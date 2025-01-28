@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Redemption</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F4F9F7; /* Light greenish background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Home Button */
+        .home-btn {
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            color: #27AE60;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: 2px solid #27AE60;
+            border-radius: 8px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: inline-flex;
+            align-items: center;
+            background-color: #F4F9F7;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .home-btn i {
+            margin-right: 8px;
+        }
+
+        .home-btn:hover {
+            background-color: #27AE60;
+            color: #FFF;
+            transform: translateY(-3px);
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            margin-top: 80px; /* To ensure content is not hidden behind the button */
+        }
+
+        h2 {
+            color: #27AE60; /* Green color */
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2C3E50;
+            font-size: 1.1rem;
+        }
+
+        .form-group p {
+            color: #7F8C8D;
+            font-size: 1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .form-group img {
+            width: 60%; /* Reduced image size */
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        /* Confirm Redemption Button */
+        .btn {
+            display: inline-block;
+            background-color: #fff; /* Default white background */
+            color: #27AE60; /* Green text */
+            padding: 18px 32px;  /* Larger button */
+            border-radius: 10px;
+            border: 2px solid #27AE60; /* Green border */
+            text-decoration: none;
+            font-size: 18px; /* Larger font size */
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #27AE60; /* Green background on hover */
+            color: #fff; /* White text on hover */
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Button -->
+    <a href="/user/home" class="home-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
+    <div class="container">
+        <h2>Confirm Redemption</h2>
+        <form action="/user/redeem-confirm/<%= giftCard.id %>" method="POST">
+            <!-- Gift Card Image -->
+            <div class="form-group">
+                <img src="/uploads/<%= giftCard.photo %>" alt="<%= giftCard.name %>">
+            </div>
+
+            <!-- Gift Card Name -->
+            <div class="form-group">
+                <label>Name:</label>
+                <p><%= giftCard.name %></p>
+            </div>
+
+            <!-- Points Needed -->
+            <div class="form-group">
+                <label>Points Needed:</label>
+                <p><%= giftCard.point %></p>
+            </div>
+
+            <!-- User's Points -->
+            <div class="form-group">
+                <label>Your Points:</label>
+                <p><%= userPoints %></p>
+            </div>
+
+            <!-- Email Input -->
+            <div class="form-group">
+                <label for="email">Please enter your email to confirm:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <!-- Hidden Inputs -->
+            <input type="hidden" name="giftCardId" value="<%= giftCard.id %>">
+            <input type="hidden" name="giftCardName" value="<%= giftCard.name %>">
+            <input type="hidden" name="giftCardPhoto" value="<%= giftCard.photo %>">
+            <input type="hidden" name="giftCardPoint" value="<%= giftCard.point %>">
+            <input type="hidden" name="userPoints" value="<%= userPoints %>">
+
+            <!-- Confirm Button -->
+            <button type="submit" class="btn">Confirm Redemption</button>
+        </form>
+    </div>
+</body>
+</html>

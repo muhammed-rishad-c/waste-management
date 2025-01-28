@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - New Orders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            background-color: #F4F9F7; /* Soft light greenish background */
+            color: #2C3E50; /* Dark gray text for readability */
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #27AE60; /* Green color for eco-friendly theme */
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 i {
+            margin-right: 15px;
+            font-size: 2.5rem;
+            color: #2ECC71; /* A slightly lighter green for the icon */
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 18px;
+            text-align: left;
+            font-size: 1rem;
+            border: none;
+        }
+
+        th {
+            background-color: #D6EBD6; /* Light green for header */
+            color: #27AE60; /* Green text for header */
+            font-weight: 600;
+        }
+
+        td {
+            background-color: #FFFFFF;
+            color: #333;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #F4F9F4; /* Alternating row colors */
+        }
+
+        tr:hover td {
+            background-color: #D0F0C0; /* Soft light green hover effect */
+        }
+
+        /* View Button Styling */
+        .btn-container form button {
+            padding: 12px 24px;
+            background-color: #27AE60; /* Green background */
+            color: #FFFFFF; /* White text */
+            border: none;
+            border-radius: 8px; /* Rounded corners for smooth look */
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        }
+
+        .btn-container form button:hover {
+            background-color: #1D7A42; /* Darker green on hover */
+            color: #F5F5F5; /* Light text color for contrast */
+            transform: translateY(-3px); /* Smooth lift effect */
+        }
+
+        .btn-container form button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.3); /* Focus ring for accessibility */
+        }
+
+        /* Action Button Group */
+        .action-btn {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .action-btn a {
+            text-decoration: none;
+            color: #2C3E50; /* Default dark gray color */
+            font-weight: 600;
+            transition: color 0.3s ease, transform 0.3s ease;
+            padding: 12px 24px;
+            border-radius: 8px;
+            background-color: #F4F9F7; /* Background color */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        }
+
+        .action-btn a:hover {
+            color: #F5F5F5; /* Light color for visibility on hover */
+            background-color: #27AE60; /* Green background on hover */
+            transform: translateY(-3px); /* Smooth lift effect */
+        }
+
+        .action-btn a:focus {
+            outline: none;
+            color: #F5F5F5; /* Ensuring the text color stays visible */
+            background-color: #27AE60;
+        }
+
+        /* No Orders Message */
+        .no-orders {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #7F8C8D; /* Light grayish text for no orders */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            table, .action-btn {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-leaf"></i> Admin Dashboard - New Orders</h1>
+
+        <% if (list.length > 0) { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Phone</th>
+                        <th>District</th>
+                        <th>Type</th>
+                        <th>Weight</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% list.forEach(item => { %>
+                        <tr>
+                            <td><%= item.id %></td>
+                            <td><%= item.phone %></td>
+                            <td><%= item.district %></td>
+                            <td><%= item.type %></td>
+                            <td><%= item.weight %></td>
+                            <td><%= item.status ? 'Ready' : 'Not Ready' %></td>
+                            <td class="btn-container">
+                                <form action="/admin/list-action" method="post">
+                                    <input type="hidden" name="id" value="<%= item.id %>">
+                                    <button type="submit">View</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="no-orders"><%= message %></p>
+        <% } %>
+
+        <br>
+
+        <div class="action-btn">
+            <a href="/admin/payment-pending">Payment Section</a>
+            <a href="/admin/history">History</a>
+            <a href="/admin/logout">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

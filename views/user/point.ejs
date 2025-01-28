@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Points for Selling Scrap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #F4F9F7; /* Soft light greenish background */
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Home link styles */
+        .home-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            color: #27AE60;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            background-color: #F4F9F7;
+            padding: 10px 20px;
+            border: 2px solid #27AE60;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .home-btn i {
+            margin-right: 8px;
+        }
+
+        .home-btn:hover {
+            background-color: #27AE60;
+            color: #FFF;
+            transform: translateY(-3px);
+        }
+
+        /* Main content section */
+        .main-content {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        h1 {
+            color: #27AE60;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            margin: 20px 0;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .points-display {
+            color: #27AE60;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+
+        .info-text {
+            font-size: 1rem;
+            margin-top: 20px;
+            color: #2C3E50;
+            line-height: 1.6;
+        }
+
+        .call-to-action {
+            background-color: #27AE60;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .call-to-action:hover {
+            background-color: #1e7a42;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .home-btn {
+                font-size: 1rem;
+                padding: 8px 16px;
+            }
+
+            .call-to-action {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/user/home" class="home-btn"><i class="fas fa-arrow-left"></i> Home</a>
+
+    <div class="main-content">
+        <h1>Your Points for Selling Scrap</h1>
+        <div class="points-display">
+            You currently have <%= points %> points.
+        </div>
+
+        <div class="info-text">
+            Thank you for being a part of our eco-friendly community! Every scrap you sell helps the environment, and in return, you earn points. These points can be redeemed for exciting rewards and benefits.<br><br>
+            <strong>Need more information?</strong><br>
+            Feel free to reach out to us if you have any questions about the points system or need assistance with your account. We're here to help!<br><br>
+            <strong>Call us at: <a href="tel:+917736628387" style="color: #27AE60; font-weight: 600;">+91 77366 28387</a></strong><br><br>
+            Thank you for your continued support in making the world a cleaner, greener place!
+        </div>
+
+        <a href="/user/home" class="call-to-action">Learn More About How Points Work</a>
+    </div>
+</body>
+</html>

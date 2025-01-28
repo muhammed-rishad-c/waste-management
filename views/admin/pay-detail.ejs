@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+    background-color: #F4F9F7;
+    color: #2C3E50;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.home-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #27AE60;
+    background-color: #F4F9F7;
+    padding: 10px 20px;
+    border: 2px solid #27AE60;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.home-btn:hover {
+    background-color: #27AE60;
+    color: #FFF;
+    transform: translateY(-3px);
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    color: #27AE60;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+img {
+    display: block;
+    max-width: 60%;  /* Reduced image size */
+    height: auto;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+.icon-text {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.icon-text i {
+    margin-right: 10px;
+    color: #27AE60;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin-top: 20px;
+    border: none;
+    background-color: #27AE60;
+    color: #FFFFFF;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background-color: #1D7A42;
+    transform: translateY(-3px);
+}
+
+.map-container {
+    margin: 20px 0;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    img {
+        max-width: 100%;
+    }
+}
+
+        /* Insert the updated CSS here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/admin/home" class="home-btn"><i class="fas fa-arrow-left"></i> Home</a>
+
+        <h1><i class="fas fa-list"></i> List Detail</h1>
+
+        <div class="icon-text">
+            <i class="fas fa-phone-alt"></i>
+            <p><strong>Phone:</strong> <%= List.phone %></p>
+        </div>
+
+        <div class="icon-text">
+            <i class="fas fa-map-marker-alt"></i>
+            <p><strong>District:</strong> <%= List.district %></p>
+        </div>
+
+        <div class="icon-text">
+            <i class="fas fa-tag"></i>
+            <p><strong>Type:</strong> <%= List.type %></p>
+        </div>
+
+        <div class="icon-text">
+            <i class="fas fa-weight-hanging"></i>
+            <p><strong>Weight:</strong> <%= List.weight %></p>
+        </div>
+
+        <% if (List.image) { %>
+            <div class="icon-text">
+                <i class="fas fa-image"></i>
+                <p><strong>Image:</strong></p>
+            </div>
+            <img src="/uploads/<%= List.image %>" alt="Image">
+        <% } %>
+
+
+        <div class="icon-text">
+            <i class="fas fa-check-circle"></i>
+            <p><strong>Status:</strong> <%= List.status ? 'Collected' : 'Not Ready' %></p>
+        </div>
+
+        <div class="icon-text">
+            <i class="fas fa-calendar-alt"></i>
+            <p><strong>Date:</strong> <%= new Date(List.date).toLocaleString() %></p>
+        </div>
+
+        <div class="icon-text">
+            <i class="fas fa-credit-card"></i>
+            <p><strong>Payment:</strong> <%= List.payment ? 'Completed' : 'Pending' %></p>
+        </div>
+
+        <a href="/admin/ready-to-payment/<%= List.id %>" class="btn"><i class="fas fa-money-check-alt"></i> Make Payment</a>
+    </div>
+</body>
+</html>

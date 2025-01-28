@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Success</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #F4F9F7; /* Soft light greenish background */
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background-color: #FFFFFF;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            position: relative;
+        }
+
+        /* Home link styles */
+        .home-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            color: #27AE60;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            background-color: #F4F9F7;
+            padding: 10px 20px;
+            border: 2px solid #27AE60;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .home-btn i {
+            margin-right: 8px;
+        }
+
+        .home-btn:hover {
+            background-color: #27AE60;
+            color: #FFF;
+            transform: translateY(-3px);
+        }
+
+        .container h1 {
+            font-family: 'Poppins', sans-serif;
+            color: #27AE60;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail {
+            margin: 10px 0;
+            font-size: 1.2rem;
+            color: #2C3E50;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+        }
+
+        .detail strong {
+            font-weight: 600;
+            color: #27AE60;
+        }
+
+        .container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-btn {
+            background-color: #28a745;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .container h1 {
+                font-size: 2rem;
+            }
+
+            .detail {
+                font-size: 1rem;
+            }
+
+            .submit-btn {
+                width: 100%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/user/home" class="home-btn"><i class="fas fa-arrow-left"></i> Home</a>
+
+        <h1><i class="fas fa-check-circle"></i> Upload Successful!</h1>
+
+        <div class="detail">
+            <strong>ID:</strong> <%= detail.id %>
+        </div>
+        <div class="detail">
+            <strong>Phone:</strong> <%= detail.phone %>
+        </div>
+        <div class="detail">
+            <strong>District:</strong> <%= detail.district %>
+        </div>
+        <div class="detail">
+            <strong>Type:</strong> <%= detail.type %>
+        </div>
+        <div class="detail">
+            <strong>Weight:</strong> <%= detail.weight %>
+        </div>
+        <div class="detail">
+            <strong>Location:</strong> <%= detail.location %>
+        </div>
+        <div class="detail">
+            <strong>Status:</strong> <%= detail.status ? "Picked Up" : "Pending" %>
+        </div>
+        <div class="detail">
+            <strong>Payment:</strong> <%= detail.payment ? "Successful" : "Pending" %>
+        </div>
+        <div class="detail">
+            <strong>Date:</strong> <%= new Date(detail.date).toLocaleString() %>
+        </div>
+        <img src="/uploads/<%= detail.image %>" alt="Uploaded Image">
+
+        <div class="message">
+            <i class="fas fa-truck"></i> Our delivery man will soon arrive to pick up the waste. Thank you for your contribution!
+        </div>
+
+    </div>
+</body>
+</html>

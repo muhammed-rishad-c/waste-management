@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Upload History</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F4F9F7; /* Light greenish background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center content vertically */
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Home Button */
+        .home-btn {
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            color: #27AE60; /* Green text */
+            font-weight: 600;
+            padding: 10px 20px;
+            border: 2px solid #27AE60; /* Green border */
+            border-radius: 8px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: inline-flex;
+            align-items: center;
+            background-color: #fff; /* White background */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .home-btn i {
+            margin-right: 8px; /* Space between icon and text */
+        }
+
+        .home-btn:hover {
+            background-color: #27AE60; /* Green background on hover */
+            color: #fff; /* White text on hover */
+            transform: translateY(-3px);
+        }
+
+        /* Container for Upload History */
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        h1 {
+            color: #27AE60;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .history-item {
+            background-color: #FFF;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .history-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+
+        .history-item .details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .details p {
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+
+        .details p strong {
+            color: #27AE60;
+        }
+
+        .no-history {
+            font-size: 1.2rem;
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .history-item {
+                padding: 12px;
+            }
+
+            .history-item img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .home-btn {
+                font-size: 1rem;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Home Button -->
+    <a href="/user/home" class="home-btn"><i class="fas fa-arrow-left"></i> Home</a>
+
+    <div class="container">
+        <h1>User Upload History</h1>
+
+        <% if (history && history.length > 0) { %>
+            <% history.forEach(item => { %>
+                <div class="history-item">
+                    <img src="/uploads/<%= item.image %>" alt="Image of <%= item.type %> waste">
+                    <div class="details">
+                        <p><strong>Type:</strong> <%= item.type %></p>
+                        <p><strong>Weight:</strong> <%= item.weight %></p>
+                        <p><strong>Location:</strong> <%= item.location %></p>
+                        <p><strong>Date:</strong> <%= new Date(item.date).toLocaleString() %></p>
+                        <p><strong>Status:</strong> <%= item.status ? 'Collected' : 'Not Collected' %></p>
+                        <p><strong>Payment:</strong> <%= item.status ? 'Successful' : 'Processing' %></p>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p class="no-history">No upload history found.</p>
+        <% } %>
+    </div>
+
+</body>
+</html>

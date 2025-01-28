@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Marketplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F4F9F7;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1000px;
+            width: 100%;
+            margin-top: 20px;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 48%;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card h2 {
+            color: #27AE60;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .card .btn {
+            background-color: #27AE60;
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .card .btn:hover {
+            background-color: #1D7A42;
+            transform: translateY(-3px);
+        }
+
+        .admin-card {
+            width: 100%;
+            max-width: 300px;
+            opacity: 0.8;
+        }
+
+        .user-card {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .card i {
+            font-size: 3rem;
+            color: #27AE60;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="color: #27AE60; text-align: center; font-size: 2.5rem; margin-bottom: 20px;">Welcome to the Marketplace</h1>
+
+    <div class="main-container">
+
+        <!-- User Dashboard Card -->
+        <div class="card user-card">
+            <i class="fas fa-user-circle"></i>
+            <h2>Customer Dashboard</h2>
+            <p>Ready to sell your household items? Click below to get started.</p>
+            <button class="btn" onclick="window.location.href='user'">Book Now</button>
+        </div>
+
+        <!-- Admin Dashboard Card -->
+        <div class="card admin-card">
+            <i class="fas fa-cogs"></i>
+            <h2>Admin Dashboard</h2>
+            <p>For admin users, click below to manage registrations.</p>
+            <button class="btn" onclick="window.location.href='admin'">Register Now</button>
+        </div>
+
+    </div>
+
+</body>
+</html>

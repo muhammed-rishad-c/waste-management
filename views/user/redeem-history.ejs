@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redeem History</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F4F9F7; /* Light greenish background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #27AE60; /* Green color */
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .redeem-list {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .redeem-item {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding: 15px 0;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .redeem-item img {
+            width: 80px;
+            height: auto;
+            margin-right: 20px;
+            border-radius: 10px;
+        }
+
+        .redeem-details {
+            flex-grow: 1;
+        }
+
+        .redeem-details p {
+            margin: 5px 0;
+            color: #2C3E50;
+            font-size: 1.1rem;
+        }
+
+        .error-message {
+            margin: 20px 0;
+            color: red;
+            font-size: 1rem;
+        }
+
+        .btn {
+            background-color: #27AE60; /* Green button */
+            color: #fff;
+            padding: 14px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #1F7A44;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/user/home" class="btn">Back to Home</a>
+
+        <h2>Redeem History</h2>
+        
+        <% if (locals.message) { %>
+            <div class="error-message">
+                <%= message %>
+            </div>
+        <% } else { %>
+            <div class="redeem-list">
+                <% history.forEach(item => { %>
+                    <div class="redeem-item">
+                        <img src="/uploads/<%= item.gift_card_photo %>" alt="<%= item.gift_card_name %>">
+                        <div class="redeem-details">
+                            <p><strong>Email:</strong> <%= item.email %></p>
+                            <p><strong>Gift Card Name:</strong> <%= item.gift_card_name %></p>
+                            <p><strong>Points Used:</strong> <%= item.gift_card_points %></p>
+                            <p><strong>Redemption Date:</strong> <%= new Date(item.redemption_date).toLocaleString() %></p>
+                            <p><strong>Phone:</strong> <%= item.phone %></p>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>

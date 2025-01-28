@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Signup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F4F9F7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: row;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: space-between;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Ensure content fits within container */
+        }
+
+        /* Left Section - Form */
+        .form-section {
+            width: 50%;
+            padding: 20px;
+        }
+
+        .form-section h2 {
+            color: #27AE60;
+            font-size: 2rem;
+            margin-top: 0;  /* Removed top margin to avoid clipping */
+            margin-bottom: 20px;  /* Adjusted bottom margin */
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word; /* Ensure text wraps properly */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .form-group input[type="file"] {
+            padding: 5px;
+        }
+
+        /* Custom select dropdown styling */
+        select {
+            background-color: #F4F9F7;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #27AE60;
+        }
+
+        option {
+            background-color: #F4F9F7;
+            color: #333;
+        }
+
+        select option:checked {
+            background-color: #27AE60;
+            color: #fff;
+        }
+
+        select option:hover {
+            background-color: #27AE60;
+            color: #fff;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #27AE60;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #1D7A42;
+            transform: translateY(-3px);
+        }
+
+        .login {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .login a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login a:hover {
+            text-decoration: underline;
+        }
+
+        /* Right Section - Title */
+        .title-section {
+            width: 50%;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .title-section i {
+            font-size: 4rem;
+            color: #27AE60;
+            margin-bottom: 15px; /* Reduced margin to allow for space */
+        }
+
+        .title-section h1 {
+            font-family: 'Poppins', sans-serif;
+            color: #27AE60;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            word-wrap: break-word; /* Ensure title text fits inside container */
+        }
+
+        .title-section p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .form-section, .title-section {
+                width: 100%;
+                text-align: center;
+            }
+
+            .title-section i {
+                font-size: 3rem;
+            }
+
+            .title-section h1 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+
+            .title-section p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Left Section - Form -->
+        <div class="form-section">
+            <form action="/user/submit-signup" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="photo">Photo</label>
+                    <input type="file" id="photo" name="photo" required>
+                </div>
+                <div class="form-group">
+                    <label for="district">District</label>
+                    <select id="district" name="district" required>
+                        <option value="">Select District</option>
+                        <option value="Alappuzha">Alappuzha</option>
+                        <option value="Ernakulam">Ernakulam</option>
+                        <option value="Idukki">Idukki</option>
+                        <option value="Kannur">Kannur</option>
+                        <option value="Kasaragod">Kasaragod</option>
+                        <option value="Kollam">Kollam</option>
+                        <option value="Kottayam">Kottayam</option>
+                        <option value="Kozhikode">Kozhikode</option>
+                        <option value="Malappuram">Malappuram</option>
+                        <option value="Palakkad">Palakkad</option>
+                        <option value="Pathanamthitta">Pathanamthitta</option>
+                        <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                        <option value="Thrissur">Thrissur</option>
+                        <option value="Wayanad">Wayanad</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirm your password">
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+            <div class="login">
+                <p>Already signed up? <a href="/user/login">Login here</a>.</p>
+            </div>
+        </div>
+
+        <!-- Right Section - Title -->
+        <div class="title-section">
+            <i class="fas fa-user-plus"></i>
+            <h1>Join our platform to sell household items</h1>
+            <p>Sign up today to get started with selling household items quickly and easily.</p>
+        </div>
+    </div>
+
+</body>
+</html>

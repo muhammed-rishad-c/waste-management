@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            background-color: #F4F9F7; /* Light greenish background */
+            color: #2C3E50; /* Dark gray text for readability */
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .container {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    
+        /* Header Styles */
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #27AE60; /* Green color for eco-friendly theme */
+            font-size: 3.5rem;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+        }
+    
+        h1 i {
+            margin-right: 20px;
+            font-size: 3rem;
+            color: #2ECC71; /* Lighter green for icon */
+        }
+    
+        /* Profile Section */
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 50px;
+            gap: 30px;
+        }
+    
+        .profile img {
+            border-radius: 12px;
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+    
+        .profile h2 {
+            font-size: 2.5rem;
+            color: #27AE60;
+        }
+    
+        .profile p {
+            font-size: 1.3rem;
+            color: #7F8C8D;
+        }
+    
+        /* Logout Button */
+        .logout-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            padding: 18px 36px;
+            background-color: #E74C3C; /* Red color for logout */
+            color: #FFFFFF;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+    
+        .logout-btn:hover {
+            background-color: #C0392B; /* Darker red on hover */
+            transform: translateY(-4px);
+        }
+    
+        /* Button Section */
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Grid with responsive buttons */
+            gap: 30px;
+            margin-top: 50px;
+        }
+    
+        .btn {
+            padding: 20px 40px;
+            background-color: #FFFFFF; /* White background */
+            color: #2C3E50; /* Dark gray text */
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            text-align: center;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Bold shadow for depth */
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+    
+        .btn:hover {
+            background-color: #27AE60; /* Green background on hover */
+            color: #FFFFFF; /* White text */
+            transform: translateY(-4px);
+        }
+    
+        .btn i {
+            margin-right: 15px;
+        }
+    
+        /* Action Button Group */
+        .action-btn {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 30px;
+        }
+    
+        .action-btn a {
+            text-decoration: none;
+            color: #2C3E50; /* Default dark gray color */
+            font-weight: 700;
+            transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+            padding: 20px 40px;
+            border-radius: 12px;
+            background-color: #FFFFFF; /* White background */
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            font-size: 1.2rem;
+        }
+    
+        .action-btn a:hover {
+            background-color: #27AE60; /* Green background on hover */
+            color: #FFFFFF; /* White text */
+            transform: translateY(-4px);
+        }
+    
+        /* No Orders Message */
+        .no-orders {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.5rem;
+            color: #7F8C8D;
+        }
+    
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+    
+            h1 {
+                font-size: 2.5rem;
+            }
+    
+            .profile img {
+                width: 150px;
+                height: 150px;
+            }
+    
+            .profile h2 {
+                font-size: 2rem;
+            }
+    
+            .profile p {
+                font-size: 1.2rem;
+            }
+    
+            .btn {
+                width: 100%;
+                padding: 18px 36px;
+                font-size: 18px;
+            }
+    
+            .action-btn {
+                flex-direction: column;
+            }
+    
+            .logout-btn {
+                width: 100%;
+                margin-top: 30px;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Section -->
+        <div class="profile">
+            <img src="/uploads/<%= detail.photo %>" alt="User Photo">
+            <div>
+                <h2>Welcome, <%= detail.full_name %></h2>
+                <p>Your account details and actions are listed below.</p>
+            </div>
+        </div>
+
+        <!-- Logout Button -->
+        <form action="/user/logout" method="get">
+            <button type="submit" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </form>
+
+        <!-- Button Section -->
+        <div class="button-container">
+            <a href="/user/upload" class="btn"><i class="fas fa-upload"></i> Upload New Photo</a>
+            <a href="/user/points" class="btn"><i class="fas fa-coins"></i> View Points</a>
+            <a href="/user/history" class="btn"><i class="fas fa-history"></i> View History</a>
+            <a href="/user/redeem" class="btn"><i class="fas fa-gift"></i> Redeem Points</a>
+            <a href="/user/redeem-history" class="btn"><i class="fas fa-clipboard-list"></i> Redeem History</a>
+        </div>
+
+        <!-- Action Button Group -->
+        <div class="action-btn">
+            <a href="/user/home">Account Settings</a>
+            <a href="/user/home">Help</a>
+        </div>
+
+        <!-- No Orders Message (Optional) -->
+        <% if (locals.message) { %>
+            <p class="no-orders"><%= message %></p>
+        <% } %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= giftCard.name %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F4F9F7; /* Light greenish background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative; /* Add this to position the button relative to the body */
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #27AE60; /* Green color */
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            margin-top: 15px;
+        }
+
+        .profile img {
+            border-radius: 12px;
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        p {
+            color: #2C3E50;
+            font-size: 1rem;
+            margin: 10px 0;
+        }
+
+        /* Default state of the Redeem button */
+        .btn {
+            background-color: #fff; /* Default white background */
+            color: #27AE60; /* Green text */
+            padding: 16px 28px;  /* Increased padding */
+            margin-top: 15px;
+            border-radius: 8px;
+            border: 2px solid #27AE60; /* Green border */
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;  /* Slightly larger font size */
+        }
+
+        /* Hover effect for the button */
+        .btn:hover {
+            background-color: #27AE60; /* Green background on hover */
+            color: #fff; /* White text on hover */
+            transform: translateY(-3px);
+        }
+
+        .btn.disabled {
+            background-color: #d3d3d3;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 10px;
+            color: #e74c3c;
+            font-size: 1rem;
+        }
+
+        /* Home Button */
+        .home-btn {
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            color: #27AE60;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: 2px solid #27AE60;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: inline-flex;
+            align-items: center;
+            background-color: #F4F9F7;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: absolute; /* Add this to position the button */
+            top: 20px; /* Position it at the top */
+            left: 20px; /* Position it at the left */
+        }
+
+        .home-btn i {
+            margin-right: 8px;
+        }
+
+        .home-btn:hover {
+            background-color: #27AE60;
+            color: #FFF;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .btn {
+                font-size: 1rem;
+                padding: 12px 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Home Button -->
+    <a href="/user/home" class="home-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
+    <div class="container">
+        <!-- Display available points -->
+        <p><strong>Your Points: </strong><%= userPoints %></p>
+
+        <!-- Gift card image -->
+        <img src="/uploads/<%= giftCard.photo %>" alt="<%= giftCard.name %>">
+
+        <!-- Gift card name -->
+        <h2><%= giftCard.name %></h2>
+
+        <!-- Gift card description -->
+        <p><%= giftCard.description %></p>
+
+        <!-- Points needed to redeem -->
+        <p><strong>Points Needed: </strong><%= giftCard.point %></p>
+
+        <!-- Redeem button -->
+        <a href="<%= userPoints >= giftCard.point ? '/user/redeem/gift/' + giftCard.id : '#' %>" class="btn <%= userPoints >= giftCard.point ? '' : 'disabled' %>">Redeem Reward</a>
+
+        <!-- Message if points are insufficient -->
+        <% if (userPoints < giftCard.point) { %>
+            <p class="message">You don't have enough points to redeem this gift card.</p>
+        <% } %>
+    </div>
+
+</body>
+</html>
